@@ -1,17 +1,17 @@
-require "bundler/gem_tasks"
-require "rspec/core/rake_task"
+require 'bundler/gem_tasks'
+require 'rspec/core/rake_task'
 
 RSpec::Core::RakeTask.new(:spec) do |spec|
-  spec.pattern = FileList["spec/**/**/*_spec.rb"].to_a
+  spec.pattern = FileList['spec/**/**/*_spec.rb'].to_a
 end
 
 begin
-  require "rubocop/rake_task"
+  require 'rubocop/rake_task'
   RuboCop::RakeTask.new(:style) do |task|
-    task.options += ["--display-cop-names", "--no-color"]
+    task.options += ['--display-cop-names', '--no-color']
   end
 rescue LoadError
-  puts "rubocop is not available.  gem install chefstyle to do style checking."
+  puts 'rubocop is not available.  gem install chefstyle to do style checking.'
 end
 
-task default: [:spec, :style]
+task default: %i[spec style]
